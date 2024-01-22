@@ -30,4 +30,10 @@ class SesiController extends Controller
             return redirect('/')->with('loginError', 'Email dan Password tidak sesuai');
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 }
