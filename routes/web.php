@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController\DashboardAdminController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,5 +19,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [SesiController::class, 'index']);
-Route::post('/', [SesiController::class, 'login']);
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', [SesiController::class, 'index']);
+    Route::post('/', [SesiController::class, 'login']);
+});
+
+Route::get('/home', function () {
+    return redirect('/admin');
+});
+
+Route::get('/admin', [DashboardAdminController::class, 'index']);
