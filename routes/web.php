@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController\DashboardAdminController;
+use App\Http\Controllers\MemberController\DashboardMemberController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::get('/home', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', [DashboardAdminController::class, 'index']);
+    Route::get('/admin/dashboard', [DashboardAdminController::class, 'index']);
+    Route::get('/member/dashboard', [DashboardMemberController::class, 'index']);
+
     Route::get('/logout', [SesiController::class, 'logout']);
 });
