@@ -10,7 +10,7 @@ class DashboardMemberController extends Controller
 {
     public function index()
     {
-        echo "<h1> Ini adalah halaman admin. Halo " . Auth::user()->name . "</h1>";
+        echo "<h1> Ini adalah halaman member. Halo " . Auth::user()->name . "</h1>";
         echo "<a href='/logout'>Logout</a>";
     }
 }
