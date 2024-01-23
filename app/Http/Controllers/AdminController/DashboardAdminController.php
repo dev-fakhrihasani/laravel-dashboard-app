@@ -10,7 +10,9 @@ class DashboardAdminController extends Controller
 {
     public function index()
     {
-        echo "<h1> Ini adalah halaman admin. Halo " . Auth::user()->name . "</h1>";
-        echo "<a href='/logout'>Logout</a>";
+        // echo "<h1> Ini adalah halaman admin. Halo " . Auth::user()->name . "</h1>";
+        // echo "<a href='/logout'>Logout</a>";
+
+        return view('admin.index');
     }
 }
