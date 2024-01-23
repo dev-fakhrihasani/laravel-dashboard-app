@@ -38,5 +38,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [DashboardAdminController::class, 'index'])->middleware('userAkses:admin');
     Route::get('/member/dashboard', [DashboardMemberController::class, 'index'])->middleware('userAkses:member');
 
-    Route::get('/logout', [SesiController::class, 'logout']);
+    Route::post('/logout', [SesiController::class, 'logout']);
 });
