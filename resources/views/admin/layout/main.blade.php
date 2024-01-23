@@ -42,6 +42,9 @@
         <!-- Sidebar -->
         @include('admin.layout.sidebar')
 
+        <!-- Main content -->
+        @yield('content')
+
 
 
     </div>
