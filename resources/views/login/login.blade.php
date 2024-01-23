@@ -23,7 +23,7 @@
             @endif
 
             <!-- Login form -->
-            <form action="" method="post" class="needs-validation" novalidate>
+            <form action="/" method="post">
                 @csrf
                 <!-- Email input -->
                 <div class="">
@@ -37,13 +37,8 @@
 
                 <!-- Password input -->
                 <div class="mt-3">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" required>
+                    <input type="password" class="form-control" placeholder="Password" name="password" required>
                 </div>
-                @error('password')
-                <p class="text-danger mb-3">
-                    {{ $message }}
-                </p>
-                @enderror
 
                 <div class="mt-4 d-grid">
                     <button name="submit" type="submit" class="btn btn-primary">Login</button>

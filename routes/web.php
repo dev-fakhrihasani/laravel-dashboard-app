@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SesiController;
 use App\Http\Controllers\AdminController\DashboardAdminController;
 use App\Http\Controllers\MemberController\DashboardMemberController;
-use App\Http\Controllers\SesiController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,11 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::get('/home', function () {
-    return redirect('/admin');
+    if (Auth::user()->role == 'admin') {
+        return redirect('/admin/dashboard');
+    } elseif (Auth::user()->role == 'member') {
+        return redirect('/member/dashboard');
+    }
 });
 
 Route::middleware(['auth'])->group(function () {

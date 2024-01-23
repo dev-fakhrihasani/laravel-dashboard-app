@@ -15,7 +15,7 @@ class SesiController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email:dns',
             'password' => 'required',
         ]);
 
@@ -26,18 +26,22 @@ class SesiController extends Controller
 
         if (Auth::attempt($infoLogin)) {
             if (Auth::user()->role == 'admin') {
-                return redirect('/admin/dashboard');
+                $request->session()->regenerate();
+                return redirect()->intended('/admin/dashboard');
             } elseif (Auth::user()->role == 'member') {
-                return redirect('/member/dashboard');
+                $request->session()->regenerate();
+                return redirect()->intended('/member/dashboard');
             }
         } else {
-            return redirect('/')->with('loginError', 'Email dan Password tidak sesuai');
+            return back()->with('loginError', 'Login Gagal');
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect('/');
     }
 }
